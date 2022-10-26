@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('installments', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
+            $table->foreignId('sale_id')->constrained();
+            $table->decimal('amount', 8, 2);
+            $table->boolean('paid');
+            $table->date('paid_in');
+            $table->date('due_date');
             $table->timestamps();
         });
     }

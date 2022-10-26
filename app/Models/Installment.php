@@ -2,17 +2,25 @@
 
 namespace App\Models;
 
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Installment extends Model
 {
-    use HasFactory;
+    use HasFactory, Uuids;
     
     protected $fillable = [
       'sale_id',
       'amount',
-      'due_date',
       'paid',
+      'paid_in',
+      'due_date',
+    ];
+
+    protected $hidden = [
+      'sales_id',
+      'created_at',
+      'updated_at',
     ];
 }

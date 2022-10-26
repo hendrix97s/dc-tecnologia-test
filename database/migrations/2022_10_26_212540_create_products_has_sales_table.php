@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('products_has_sales', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('product_id')->constrained();
             $table->foreignId('sale_id')->constrained();
             $table->unsignedInteger('quantity');

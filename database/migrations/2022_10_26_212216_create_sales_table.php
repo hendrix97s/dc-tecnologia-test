@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->foreignId('sold_by')->constrained('users');
             $table->foreignId('payment_id')->constrained();
             $table->timestamps();
