@@ -2,7 +2,7 @@
 
 <div class="flex items-center  justify-center flex-wrap  profile w-32">
   <div class="profile-image flex items-center  justify-center  bg-white rounded-full w-24 h-24 mt-10">
-    <img src="https://avatars.dicebear.com/api/bottts/:sales-profile.svg" alt="Profile Image" class="w-20">
+    <img src="https://avatars.dicebear.com/api/bottts/:{{ Auth::user()->name }}.svg" alt="Profile Image" class="w-20">
   </div>
 
   <div class="profile-name mt-4 mb-4">
@@ -16,20 +16,21 @@
 </div>
 
 <ul class="w-full">
-    <li class="menu-item  mt-2 ml-5">
-        <a href="{{ route('product.index') }}" class="menu-link">
-            <span class="menu-icon">
-                <i class="fas fa-home"></i>
-            </span>
-            <span class="menu-text">Products</span>
-        </a>
-    </li>
+
     <li class="menu-item  mt-2 ml-5">
         <a href="{{ route('dashboard') }}" class="menu-link">
             <span class="menu-icon">
                 <i class="fas fa-tachometer-alt"></i>
             </span>
             <span class="menu-text">Dashboard</span>
+        </a>
+    </li>
+    <li class="menu-item  mt-2 ml-5">
+        <a href="{{ route('product.index') }}" class="menu-link">
+            <span class="menu-icon">
+                <i class="fas fa-home"></i>
+            </span>
+            <span class="menu-text">Products</span>
         </a>
     </li>
     <li class="menu-item  mt-2 ml-5">

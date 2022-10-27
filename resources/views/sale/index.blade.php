@@ -1,38 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Vendas</div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Produto</th>
-                                    <th>Quantidade</th>
-                                    <th>Preço</th>
-                                    <th>Total</th>
-                                    <th>Data</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($sales as $sale)
-                                    <tr>
-                                        <td>{{ $sale->product->name }}</td>
-                                        <td>{{ $sale->quantity }}</td>
-                                        <td>{{ $sale->price }}</td>
-                                        <td>{{ $sale->total }}</td>
-                                        <td>{{ $sale->created_at }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        {{ $sales->links() }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="flex items-center  justify-center  w-full ">
+  <!--  sales table -->
+  <div class="bg-white p-12 rounded-xl w-full">
+    <div class="text-2xl font-bold mb-4">Sales</div>
+    <table class="table-auto w-full">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Method Payment</th>
+          <th class="px-4 py-2">Uuid</th>
+          <th class="px-4 py-2">Sold By</th>
+          <th class="px-4 py-2">Total</th>
+        </tr>
+      </thead>
+      <tbody id="sale-table">
+        @foreach ($sales as $sale)
+          <tr>
+            <td class="border px-4 py-2">{{ $sale->method_payment }}</td>
+            <td class="border px-4 py-2">{{ $sale->uuid }}</td>
+            <td class="border px-4 py-2">{{ $sale->user_name }}</td>
+            <td class="border px-4 py-2">{{ $sale->total }}</td>
+            <td class="border px-4 py-2">
+            <a href="{{ route('sale.show', $sale->uuid) }}" class="ml-2"><i class="fa-solid fa-eye"></i> </a>
+            </td>
+          </tr>
+          
+        @endforeach
+      </tbody>
+    </table>
+
+
+</div>
+
 @endsection

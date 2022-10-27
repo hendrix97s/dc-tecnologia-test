@@ -18,6 +18,7 @@ class Sale extends Model
     ];
 
     protected $appends = [
+      'user_name',
       'total',
       'installments',
       'products',
@@ -38,6 +39,11 @@ class Sale extends Model
     public function products()
     {
       return $this->belongsToMany(Product::class, 'products_has_sales')->withPivot('quantity','total');
+    }
+
+    public function users()
+    {
+      return $this->hasOne(User::class, 'id', 'sold_by');
     }
 
     public function getProductsAttribute()
@@ -65,5 +71,10 @@ class Sale extends Model
     public function getInstallmentsAttribute()
     {
       return $this->installments()->get();
+    }
+
+    public function getUserNameAttribute()
+    {
+      return $this->users()->first()->name;
     }
 }
