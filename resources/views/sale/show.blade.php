@@ -2,7 +2,6 @@
 
 @section('content')
 
-<!-- show sale data -->
 <div class="flex items-center  justify-center  w-full p-6">
   <div class="bg-white p-12 rounded-xl w-full">
     <div class="text-2xl font-bold mb-4">Sale</div>
