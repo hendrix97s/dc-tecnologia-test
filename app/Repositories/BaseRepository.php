@@ -11,6 +11,11 @@ class BaseRepository
       $this->model = new $model;
     }
 
+    public function paginate()
+    {
+      return $this->model->paginate(config('settings.paginate'));
+    }
+
     public function all()
     {
       return $this->model->all();

@@ -13,7 +13,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -24,7 +24,10 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+          'name'        => 'sometimes|string',
+          'description' => 'sometimes|string',
+          'price'       => 'sometimes|numeric',
+          'stock'       => 'sometimes|numeric',
         ];
     }
 }
