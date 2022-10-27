@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSaleRequest;
 use App\Http\Requests\UpdateSaleRequest;
 use App\Models\Sale;
+use App\Repositories\ProductRepository;
 use App\Repositories\SaleRepository;
 use App\Services\SaleService;
+use Illuminate\Http\Request;
 
 class SaleController extends Controller
 {
@@ -17,7 +19,7 @@ class SaleController extends Controller
      */
     public function index(SaleRepository $repostory)
     {
-      $sales = $repostory->paginate();
+      $sales = $repostory->all();
       return view('sale.index', compact('sales'));
     }
 
@@ -26,9 +28,11 @@ class SaleController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(ProductRepository $repostory)
     {
-      return view('sale.create');
+
+      $products = $repostory->all();
+      return view('sale.create', compact('products'));
     }
 
     /**
@@ -41,7 +45,7 @@ class SaleController extends Controller
     {
       $data = $request->validated();
       $sale = $service->store($data);
-      return redirect()->route('sale.show', $sale->uuid);
+      return response()->json($sale);
     }
 
     /**
@@ -50,9 +54,10 @@ class SaleController extends Controller
      * @param  \App\Models\Sale  $sale
      * @return Response
      */
-    public function show(Sale $sale)
+    public function show($uuid, SaleRepository $repostory)
     {
-        //
+      $sale = $repostory->findByUuid($uuid);
+      return view('sale.show', compact('sale'));
     }
 
     /**

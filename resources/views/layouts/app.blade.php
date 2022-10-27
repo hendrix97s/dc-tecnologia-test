@@ -26,6 +26,8 @@
 
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://kit.fontawesome.com/4f1363f62f.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        @vite('resources/js/functions.js', 'vendor/courier/build')
     </head>
     <body class="antialiased">
         <div class="relative flex  min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
@@ -45,7 +47,7 @@
               @include('layouts.menu')
             @endauth
             @yield('content')
-            @yield('scripts')
-          </div>
+        </div>
+        @yield('scripts')
     </body>
 </html>

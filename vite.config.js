@@ -12,7 +12,8 @@ export default defineConfig({
               'resources/css/sale.css',
               'resources/js/product.js',
               'resources/js/sale.js',
-              'resources/js/app.js'
+              'resources/js/app.js',
+              'resources/js/functions.js'
             ],
             refresh: true,
         }),
