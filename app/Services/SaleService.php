@@ -5,9 +5,16 @@ namespace App\Services;
 
 class SaleService
 {
-  public function attachProduct($sale, $product)
+  /**
+   * Undocumented function
+   *
+   * @param [type] $data
+   * @return Sale
+   */
+  public function store($data)
   {
-    
-    $sale->products()->attach($product);
+    $sale = Sale::create($data);
+    $sale->products()->attach($data['products']);
+    return $sale;
   }
 }

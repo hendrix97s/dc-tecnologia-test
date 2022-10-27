@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\SaleRepository;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // register SalRepositoryFacade
+        App::bind('SaleRepository', fn() => new SaleRepository());
     }
 
     /**

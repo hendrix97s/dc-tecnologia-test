@@ -29,5 +29,5 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
   Route::resource('product', ProductController::class)->parameter('product', 'uuid');
-  Route::resource('sale', SaleController::class)->parameter('sale', 'uuid');
+  Route::resource('sale', SaleController::class)->except('update', 'edit')->parameter('sale', 'uuid');
 });

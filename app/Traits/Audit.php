@@ -1,13 +1,13 @@
 <?php 
 
-
 namespace App\Traits;
+
+use Illuminate\Support\Str;
 
 trait Audit
 {
-    public static function boot()
+    protected static function bootAudit()
     {
-      parent::boot();
       static::creating(function ($model) {
         $model->sold_by = auth()->user()->id;
       });

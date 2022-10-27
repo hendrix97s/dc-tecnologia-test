@@ -13,7 +13,7 @@ class StoreSaleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -24,7 +24,10 @@ class StoreSaleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+          'method_payment'      => 'required',
+          'products'            => 'required|array',
+          'products.*.uuid'     => 'required|exists:products,uuid',
+          'products.*.quantity' => 'required|integer',
         ];
     }
 }
