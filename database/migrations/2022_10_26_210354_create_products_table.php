@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->float('price', 8, 2);
-            $table->unsignedInteger('stock');
+            $table->unsignedInteger('stock')->nullable();
             $table->timestamps();
         });
     }

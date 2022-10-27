@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-
-<div class="flex justify-center">
-  <div class="w-8/12 bg-white p-6 rounded-lg">
+<div class="flex items-center  justify-center  w-full">
+  <div class="flex">
+  <div class="bg-white p-6 rounded-lg">
     <form action="{{ route('product.update', $product->uuid) }}" method="POST">
       @csrf
       @method('PUT')
@@ -40,5 +40,5 @@
     </form>
   </div>
 </div>
-
+</div>
 @endsection

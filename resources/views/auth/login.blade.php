@@ -1,7 +1,9 @@
 @extends('layouts.app')
-
+@section('styles')
+  @vite('resources/css/login.css', 'vendor/courier/build')
+@endsection
 @section('content')
-
+<div class="flex items-center items-center justify-center w-full h-screen">
   <form action="{{ route('authenticate') }}" method="POST">
     @csrf
     <div class="mb-4">
@@ -26,5 +28,5 @@
       <button type="submit" class="bg-blue-500 text-white px-4 py-3 rounded font-medium w-full">Login</button>
     </div>
   </form>
-
+</div>
 @endsection

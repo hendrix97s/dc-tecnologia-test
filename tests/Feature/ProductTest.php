@@ -32,6 +32,7 @@ class ProductTest extends TestCase
   {
     $payload = [
       'name' => 'Test Product',
+      'description' => 'Test Product Description',
       'price' => 100,
       'quantity' => 10,
     ];
