@@ -2,7 +2,6 @@
 
 @section('content')
 
-<!-- Create page to show a sale -->
 <div class="container">
     <div class="row">
         <div class="col-md-12">

@@ -24,6 +24,7 @@ class Sale extends Model
     ];
 
     protected $hidden = [
+      'id',
       'sold_by',
       'created_at',
       'updated_at',
@@ -41,7 +42,6 @@ class Sale extends Model
 
     public function getProductsAttribute()
     {
-      // retorna apenas um array com os pivot dos products
       return $this->products()->get()->map(function ($product) {
         $data = [
           'uuid' => $product->uuid,
@@ -50,6 +50,7 @@ class Sale extends Model
           'quantity' => $product->pivot->quantity,
           'total' => $product->pivot->total,
         ];
+
         return $data;
       });
     }

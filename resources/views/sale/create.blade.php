@@ -2,4 +2,3 @@
 
 @section('content')
 
-<!-- Create page to create a sale -->

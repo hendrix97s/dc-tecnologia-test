@@ -19,7 +19,8 @@ class Installment extends Model
     ];
 
     protected $hidden = [
-      'sales_id',
+      'id',
+      'sale_id',
       'created_at',
       'updated_at',
     ];

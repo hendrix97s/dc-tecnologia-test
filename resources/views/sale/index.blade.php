@@ -1,4 +1,3 @@
-<!-- criar pagina de listagem de vendas (sales) -->
 @extends('layouts.app')
 
 @section('content')

@@ -28,7 +28,19 @@ class StoreSaleRequest extends FormRequest
           'products'            => 'required|array',
           'products.*.uuid'     => 'required|exists:products,uuid',
           'products.*.quantity' => 'required|integer',
-          'due_day' => 'sometimes|numeric',
+          'due_date' => 'sometimes|date',
+          'quantity_installments' => 'sometimes|numeric',
         ];
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->sometimes('due_date', 'required', function ($input) {
+            return $input->method_payment == 'credit_card';
+        });
+
+        $validator->sometimes('quantity_installments', 'required', function ($input) {
+            return $input->method_payment == 'credit_card';
+        });
     }
 }
