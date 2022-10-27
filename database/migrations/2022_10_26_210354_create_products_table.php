@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid('uuid')->unique();
             $table->string('name');
             $table->text('description');
-            $table->decimal('price', 8, 2);
+            $table->float('price', 8, 2);
             $table->unsignedInteger('stock');
             $table->timestamps();
         });

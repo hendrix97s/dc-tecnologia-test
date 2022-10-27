@@ -9,9 +9,16 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    //
+    public function login()
+    {
+      if(Auth::check()) return redirect()->route('dashboard');
+      return view('auth.login');
+    }
+    
     public function authenticate(AuthenticateRequest $request)
     {
+      if(Auth::check()) return redirect()->route('dashboard');
+
       $credentials = $request->validated();
       $user = User::where('email', $credentials['email'])->first();
       if(!$user)
@@ -19,9 +26,7 @@ class AuthController extends Controller
       
       if(!auth()->attempt($credentials))
         return back()->withErrors(['password' => 'Password is incorrect.']);
-  
-      $user->save();
-      redirect()->route('dashboard');      
+      return redirect()->route('dashboard');      
     }
 
     public function logout()

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained();
             $table->foreignId('sale_id')->constrained();
             $table->unsignedInteger('quantity');
-            $table->decimal('total', 8, 2);
+            $table->float('total', 8, 2);
             $table->timestamps();
         });
     }
