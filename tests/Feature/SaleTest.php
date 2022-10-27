@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Facades\SaleRepositoryFacade;
+use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -37,12 +38,23 @@ class SaleTest extends TestCase
 
   public function test_store_sale()
   {
-    $response = $this->post(route('sale.store'), [
-      'product_id' => 1,
-      'quantity' => 1,
-      'price' => 1,
-      'total' => 1,
-    ]);
+
+    $products = Product::factory(4)->create()->pluck('uuid')->toArray();
+
+    foreach ($products as $product) {
+      $data[] = [
+        'uuid' => $product,
+        'quantity' => rand(1, 3),
+      ];
+    }
+
+    $payload = [
+      'method_payment' => 'credit_card', 
+      'products' => $data,
+      'due_day' => '12',
+    ];
+
+    $response = $this->post(route('sale.store'), $payload);
     
     $response->assertStatus(302);
   }

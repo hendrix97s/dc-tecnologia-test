@@ -12,14 +12,13 @@ class Sale extends Model
     use HasFactory, Uuids, Audit;
 
     protected $fillable = [
-      'total',
       'method_payment',
       'paid',
       'paid_in',
-      'quantity',
     ];
 
     protected $appends = [
+      'total',
       'installments',
       'products',
     ];
@@ -37,12 +36,29 @@ class Sale extends Model
 
     public function products()
     {
-      return $this->belongsToMany(Product::class, 'products_has_sales');
+      return $this->belongsToMany(Product::class, 'products_has_sales')->withPivot('quantity','total');
     }
 
     public function getProductsAttribute()
     {
-      return $this->products()->get();
+      // retorna apenas um array com os pivot dos products
+      return $this->products()->get()->map(function ($product) {
+        $data = [
+          'uuid' => $product->uuid,
+          'name' => $product->name,
+          'price' => $product->price,
+          'quantity' => $product->pivot->quantity,
+          'total' => $product->pivot->total,
+        ];
+        return $data;
+      });
+    }
+
+    public function getTotalAttribute()
+    {      
+      return $this->products()->get()->map(function ($product) {
+        return $product->pivot->total;
+      })->sum();
     }
 
     public function getInstallmentsAttribute()

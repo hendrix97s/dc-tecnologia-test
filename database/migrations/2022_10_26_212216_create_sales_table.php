@@ -17,11 +17,9 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->foreignId('sold_by')->constrained('users');
-            $table->float('total', 8, 2);
             $table->string('method_payment');
-            $table->boolean('paid');
-            $table->date('paid_in');
-            $table->unsignedInteger('quantity');
+            $table->boolean('paid')->default(false);
+            $table->date('paid_in')->nullable()->default(null);
             $table->timestamps();
         });
     }

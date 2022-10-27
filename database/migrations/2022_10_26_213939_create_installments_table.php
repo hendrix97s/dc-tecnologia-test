@@ -18,8 +18,8 @@ return new class extends Migration
             $table->uuid('uuid')->unique();
             $table->foreignId('sale_id')->constrained();
             $table->decimal('amount', 8, 2);
-            $table->boolean('paid');
-            $table->date('paid_in');
+            $table->boolean('paid')->default(false);
+            $table->date('paid_in')->default(null)->nullable();
             $table->date('due_date');
             $table->timestamps();
         });

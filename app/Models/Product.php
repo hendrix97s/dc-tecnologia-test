@@ -16,4 +16,12 @@ class Product extends Model
         'price',
         'stock',
     ];
+
+    protected $hidden = [
+      'id',
+      'created_at',
+      'updated_at',
+    ];
+
+
 }

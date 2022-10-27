@@ -24,10 +24,11 @@ class StoreSaleRequest extends FormRequest
     public function rules()
     {
         return [
-          'method_payment'      => 'required',
+          'method_payment'      => 'required|in:cash,credit_card,debit_card,check',
           'products'            => 'required|array',
           'products.*.uuid'     => 'required|exists:products,uuid',
           'products.*.quantity' => 'required|integer',
+          'due_day' => 'sometimes|numeric',
         ];
     }
 }
